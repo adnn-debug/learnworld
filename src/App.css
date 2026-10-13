@@ -395,3 +395,52 @@ button:focus-visible,a:focus-visible,select:focus-visible { outline: 3px solid v
   .quiz-topline { flex-wrap: wrap; }
   .quiz-score-live { padding: 6px 9px; }
 }
+
+
+/* Learning module: keep every lesson and quiz surface on the dark glass theme. */
+.lesson,
+.lesson-deep-dive,
+.lesson-study-section,
+.quiz-section,
+.quiz-result,
+.feedback {
+  color: #f0edf9;
+}
+.lesson-deep-dive {
+  border-color: rgba(185, 160, 255, .2);
+  background: linear-gradient(145deg, rgba(29, 27, 54, .92), rgba(18, 17, 36, .88));
+  box-shadow: inset 0 1px rgba(255,255,255,.035);
+}
+.lesson-content-heading h3,
+.lesson-study-section h4,
+.quiz-question-prompt {
+  color: #f7f5ff;
+}
+.lesson-content-heading p,
+.lesson-study-section p {
+  color: #c1bdd4;
+}
+.lesson-study-section {
+  border-color: rgba(255,255,255,.09);
+}
+.lesson-study-number {
+  color: #d4c6ff;
+  background: rgba(185,160,255,.13);
+  border: 1px solid rgba(185,160,255,.16);
+}
+.quiz-score-live {
+  color: #e8e3f7;
+  border-color: rgba(255,255,255,.12);
+  background: rgba(255,255,255,.045);
+}
+.quiz-progress-track {
+  background: rgba(255,255,255,.09);
+}
+.quiz-result {
+  color: #f0edf9;
+  border-color: rgba(255,255,255,.12);
+  background: rgba(255,255,255,.045);
+}
+.quiz-result p {
+  color: #c1bdd4;
+}
