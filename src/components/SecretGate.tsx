@@ -9,11 +9,11 @@ type SecretGateProps = {
 const privacyQuestions = [
   {
     question: "What’s your favourite colour?",
-    acceptedAnswers: ["burgundy", "coffee nude"],
+    acceptedAnswers: ["burgundy", "coffee nude", "burgundy and coffee nude"],
   },
   {
     question: "What’s your favourite emoji?",
-    acceptedAnswers: ["🎀", "pink bow"],
+    acceptedAnswers: ["🎀", "pink bow", "pink bow emoji"],
   },
   {
     question: "By what name does your stupid call you?",
