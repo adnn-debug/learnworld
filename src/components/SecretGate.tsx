@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, type FormEvent } from "react";
 import "./SecretGate.css";
 
 type SecretGateProps = {
@@ -31,9 +31,8 @@ export default function SecretGate({ onSuccess, onCancel }: SecretGateProps) {
   const [questionIndex, setQuestionIndex] = useState(0);
   const [answer, setAnswer] = useState("");
   const [error, setError] = useState("");
-  const [wrongAttempts, setWrongAttempts] = useState(0);
 
-  function submitName(event: React.FormEvent<HTMLFormElement>) {
+  function submitName(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
     if (normalise(name) !== "saniya") {
@@ -45,7 +44,7 @@ export default function SecretGate({ onSuccess, onCancel }: SecretGateProps) {
     setError("");
   }
 
-  function submitAnswer(event: React.FormEvent<HTMLFormElement>) {
+  function submitAnswer(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
     const currentQuestion = privacyQuestions[questionIndex];
@@ -55,7 +54,6 @@ export default function SecretGate({ onSuccess, onCancel }: SecretGateProps) {
     );
 
     if (!accepted) {
-      setWrongAttempts((count) => count + 1);
       setError("That answer doesn’t match. Please try again.");
       setAnswer("");
       return;
