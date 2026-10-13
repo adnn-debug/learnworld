@@ -26,7 +26,7 @@ export default function SubjectCard({
       <strong>{subject.name}</strong>
       <span className="level">{subject.level}</span>
       <span className="description">{subject.description}</span>
-      <span className="card-link">Explore lessons →</span>
+      <span className="card-link">Open learning module →</span>
       <span className="lesson-count">
         {subject.lessons.length} sample lessons
       </span>
