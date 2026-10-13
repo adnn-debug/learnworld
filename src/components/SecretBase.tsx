@@ -68,6 +68,7 @@ export default function SecretBase({ onBack }: SecretBaseProps) {
         <button type="button" className="secret-back" onClick={onBack}>
           <span aria-hidden="true">←</span> Back to LearnWorld
         </button>
+        <nav className="secret-quick-links" aria-label="Private space shortcuts"><a href="#game-corner">🎮 Game Corner</a><a href="#secret-study-heading">📚 Study desk</a><a href="#secret-progress-area">✧ Progress</a></nav>
         <span className="secret-bow" aria-hidden="true">🎀</span>
       </header>
 
@@ -109,6 +110,8 @@ export default function SecretBase({ onBack }: SecretBaseProps) {
         </div>
       </div>
 
+      <GameCorner />
+
       <div className="secret-section-heading">
         <span className="secret-card-kicker">CHOOSE YOUR SUBJECT</span>
         <h2>What shall we explore today?</h2>
@@ -127,8 +130,6 @@ export default function SecretBase({ onBack }: SecretBaseProps) {
         ))}
       </div>
 
-      <GameCorner />
-
       <section className="secret-study-area" aria-labelledby="secret-study-heading">
         <div className="secret-section-heading secret-study-heading">
           <span className="secret-card-kicker">LEARN • UNDERSTAND • PRACTISE</span>
@@ -144,7 +145,7 @@ export default function SecretBase({ onBack }: SecretBaseProps) {
         />
       </section>
 
-      <section className="secret-progress-area" aria-label="Detailed learning progress">
+      <section className="secret-progress-area" id="secret-progress-area" aria-label="Detailed learning progress">
         <ProgressPanel subjects={subjects} progress={progress} onReset={resetProgress} />
       </section>
 
