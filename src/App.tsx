@@ -59,6 +59,14 @@ function App() {
 
     setSelectedId(id);
     setSelectedLessonId(nextSubject.lessons[0]?.id ?? "");
+
+    // Selecting a subject should take the learner straight to its module.
+    window.setTimeout(() => {
+      document.getElementById("lessons")?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }, 80);
   }
 
   return (
@@ -106,7 +114,7 @@ function App() {
 
             <div className="hero-actions">
               <a className="hero-primary" href="#subjects">
-                Explore subjects <span aria-hidden="true">→</span>
+                Explore learning modules <span aria-hidden="true">→</span>
               </a>
 
               <a className="hero-secondary" href="#lessons">
@@ -225,7 +233,7 @@ function App() {
             <div>
               <span className="section-kicker">YOUR NEXT DISCOVERY</span>
               <h2>What will you learn today?</h2>
-              <p>Choose a subject and start with one small idea.</p>
+              <p>Choose a subject to open its learning module, read the lesson, and test your understanding.</p>
             </div>
             <span className="section-decoration" aria-hidden="true">✳</span>
           </div>
@@ -310,9 +318,9 @@ function App() {
           <div className="lesson-section-heading">
             <div>
               <span className="section-kicker">TIME TO GET HANDS-ON</span>
-              <h2>Let’s understand something.</h2>
+              <h2>Your learning module</h2>
               <p>
-                Read the explanation, explore the example, then try the question.
+                Your selected subject opens here. Read the lesson, switch between topics, and check your understanding with a quiz.
               </p>
             </div>
             <span className="lesson-heading-icon" aria-hidden="true">✎</span>
