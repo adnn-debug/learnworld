@@ -28,7 +28,7 @@ export default function SubjectCard({
       <span className="description">{subject.description}</span>
       <span className="card-link">Open learning module →</span>
       <span className="lesson-count">
-        {subject.lessons.length} sample lessons
+        {subject.lessons.length} topics
       </span>
     </button>
   );
