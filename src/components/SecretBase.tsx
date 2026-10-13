@@ -4,6 +4,7 @@ import { useProgress } from "../hooks/useProgress";
 import LessonPanel from "./LessonPanel";
 import ProgressPanel from "./ProgressPanel";
 import SubjectCard from "./SubjectCard";
+import GameCorner from "./GameCorner";
 import "./SecretBase.css";
 
 type SecretBaseProps = {
@@ -125,6 +126,8 @@ export default function SecretBase({ onBack }: SecretBaseProps) {
           </div>
         ))}
       </div>
+
+      <GameCorner />
 
       <section className="secret-study-area" aria-labelledby="secret-study-heading">
         <div className="secret-section-heading secret-study-heading">
