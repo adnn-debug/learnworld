@@ -1,5 +1,6 @@
 
 import { useState } from "react";
+import SecretBase from "./components/SecretBase";
 import "./App.css";
 
 import { subjects } from "./data/curriculum";
@@ -9,6 +10,7 @@ import ProgressPanel from "./components/ProgressPanel";
 import { useProgress } from "./hooks/useProgress";
 
 function App() {
+  const [activePage, setActivePage] = useState<"home" | "secret">("home");
   const [selectedId, setSelectedId] = useState("physics");
   const [selectedLessonId, setSelectedLessonId] = useState("motion");
 
@@ -79,6 +81,10 @@ function App() {
       </header>
 
       <main>
+        {activePage === "secret" ? (
+          <SecretBase onBack={() => setActivePage("home")} />
+        ) : (
+          <>
         <section className="hero">
           <div className="hero-copy">
             <div className="hero-pill">
@@ -321,6 +327,8 @@ function App() {
             onRecordAttempt={recordAttempt}
           />
         </section>
+          </>
+        )}
       </main>
 
       <footer className="footer">
@@ -329,9 +337,20 @@ function App() {
           LearnWorld
         </a>
         <span>Built for curious minds. Keep asking why. ✦</span>
-        <a className="back-to-top" href="#" aria-label="Back to top">
-          Back to top ↑
-        </a>
+        <div className="footer-actions">
+          <button
+            type="button"
+            className="secret-entry"
+            onClick={() => setActivePage(activePage === "secret" ? "home" : "secret")}
+            aria-label={activePage === "secret" ? "Return to LearnWorld" : "Open the secret base"}
+            title="A little hidden corner 🎀"
+          >
+            🎀
+          </button>
+          <a className="back-to-top" href="#" onClick={() => setActivePage("home")} aria-label="Back to top">
+            Back to top ↑
+          </a>
+        </div>
       </footer>
     </div>
   );
