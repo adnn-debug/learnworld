@@ -12,8 +12,8 @@ import { useProgress } from "./hooks/useProgress";
 
 function App() {
   const [activePage, setActivePage] = useState<"home" | "gate" | "secret">("home");
-  const [selectedId, setSelectedId] = useState("physics");
-  const [selectedLessonId, setSelectedLessonId] = useState("motion");
+  const [selectedId, setSelectedId] = useState(subjects[0]?.id ?? "");
+  const [selectedLessonId, setSelectedLessonId] = useState(subjects[0]?.lessons[0]?.id ?? "");
 
   const { progress, recordAttempt, resetProgress } = useProgress();
 
