@@ -30,8 +30,8 @@ const littleThings = [
 ];
 
 export default function SecretBase({ onBack }: SecretBaseProps) {
-  const [selectedId, setSelectedId] = useState("physics");
-  const [selectedLessonId, setSelectedLessonId] = useState("motion");
+  const [selectedId, setSelectedId] = useState(subjects[0]?.id ?? "");
+  const [selectedLessonId, setSelectedLessonId] = useState(subjects[0]?.lessons[0]?.id ?? "");
   const { progress, recordAttempt, resetProgress } = useProgress();
 
   const subject = subjects.find((item) => item.id === selectedId) ?? subjects[0];
