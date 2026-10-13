@@ -81,7 +81,7 @@ export default function SecretBase({ onBack }: SecretBaseProps) {
       </div>
 
       <p className="secret-disclaimer">
-        This is a hidden design page, not a secured private account. Private access can be added later with authentication.
+        This space is gated by entry questions, but those checks run in the website frontend and are not strong security. Server-side authentication and authorization are still needed before storing genuinely private information here.
       </p>
     </section>
   );
