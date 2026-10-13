@@ -35,7 +35,7 @@ export default function SecretGate({ onSuccess, onCancel }: SecretGateProps) {
   function submitName(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
-    if (normalise(name) !== "saniya") {
+    if (!["saniya", "feriha"].includes(normalise(name))) {
       setError("This private learning space is only for the invited learner.");
       return;
     }
