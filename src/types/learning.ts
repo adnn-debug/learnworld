@@ -13,7 +13,8 @@ export type Lesson = {
   introduction: string;
   keyIdeas: string[];
   example: string;
-  question: QuizQuestion;
+  studySections: { heading: string; body: string }[];
+  questions: QuizQuestion[];
 };
 
 export type Subject = {
