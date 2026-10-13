@@ -355,8 +355,8 @@ function App() {
           <button
             type="button"
             className="secret-entry"
-            onClick={() => setActivePage(activePage === "secret" ? "home" : "gate")}
-            aria-label={activePage === "secret" ? "Return to LearnWorld" : "Open private learning-space entry"}
+            onClick={() => setActivePage("gate")}
+            aria-label="Open private learning-space entry"
             title="A little hidden corner 🎀"
           >
             🎀
