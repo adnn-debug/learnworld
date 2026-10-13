@@ -137,6 +137,7 @@ export default function SecretBase({ onBack }: SecretBaseProps) {
           <p>Read the explanation, review the key ideas, then answer the question.</p>
         </div>
         <LessonPanel
+          key={`${subject.id}-${lesson.id}`}
           subject={subject}
           lesson={lesson}
           onSelectLesson={setSelectedLessonId}
