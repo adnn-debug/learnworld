@@ -1,6 +1,7 @@
 
 import { useState } from "react";
 import SecretBase from "./components/SecretBase";
+import SecretGate from "./components/SecretGate";
 import "./App.css";
 
 import { subjects } from "./data/curriculum";
@@ -10,7 +11,7 @@ import ProgressPanel from "./components/ProgressPanel";
 import { useProgress } from "./hooks/useProgress";
 
 function App() {
-  const [activePage, setActivePage] = useState<"home" | "secret">("home");
+  const [activePage, setActivePage] = useState<"home" | "gate" | "secret">("home");
   const [selectedId, setSelectedId] = useState("physics");
   const [selectedLessonId, setSelectedLessonId] = useState("motion");
 
@@ -91,6 +92,11 @@ function App() {
       <main>
         {activePage === "secret" ? (
           <SecretBase onBack={() => setActivePage("home")} />
+        ) : activePage === "gate" ? (
+          <SecretGate
+            onCancel={() => setActivePage("home")}
+            onSuccess={() => setActivePage("secret")}
+          />
         ) : (
           <>
         <section className="hero">
@@ -349,8 +355,8 @@ function App() {
           <button
             type="button"
             className="secret-entry"
-            onClick={() => setActivePage(activePage === "secret" ? "home" : "secret")}
-            aria-label={activePage === "secret" ? "Return to LearnWorld" : "Open the secret base"}
+            onClick={() => setActivePage(activePage === "secret" ? "home" : "gate")}
+            aria-label={activePage === "secret" ? "Return to LearnWorld" : "Open private learning-space entry"}
             title="A little hidden corner 🎀"
           >
             🎀
