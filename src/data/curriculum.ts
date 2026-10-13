@@ -10,20 +10,123 @@ type TopicSeed = {
   wrong: string[];
 };
 
+function makeQuestion(
+  prompt: string,
+  answer: string,
+  distractors: string[],
+  explanation: string,
+  questionIndex: number,
+  topicId: string,
+): QuizQuestion {
+  const uniqueDistractors = [...new Set(distractors.filter((item) => item !== answer))].slice(0, 3);
+  while (uniqueDistractors.length < 3) {
+    uniqueDistractors.push(`Review the lesson notes for ${topicId} and compare the evidence carefully.`);
+  }
+  const correctAnswer = (questionIndex + topicId.length) % 4;
+  const options = [...uniqueDistractors];
+  options.splice(correctAnswer, 0, answer);
+  return { prompt, options, correctAnswer, explanation };
+}
+
+function makeQuestionBank(topic: TopicSeed): QuizQuestion[] {
+  const ideas = topic.keyIdeas;
+  const wrong = topic.wrong;
+  const accurateDistractors = wrong;
+  const misconceptionOptions = [ideas[0], ideas[1], ideas[2]];
+  const items: Array<{ prompt: string; answer: string; distractors: string[]; explanation: string }> = [
+    {
+      prompt: topic.check,
+      answer: ideas[0],
+      distractors: accurateDistractors,
+      explanation: ideas[0],
+    },
+    {
+      prompt: `Which statement about ${topic.title.toLowerCase()} is accurate?`,
+      answer: ideas[1],
+      distractors: accurateDistractors,
+      explanation: ideas[1],
+    },
+    {
+      prompt: `Which additional principle should you remember about ${topic.title.toLowerCase()}?`,
+      answer: ideas[2],
+      distractors: accurateDistractors,
+      explanation: ideas[2],
+    },
+    {
+      prompt: `Which description best introduces ${topic.title.toLowerCase()}?`,
+      answer: topic.introduction,
+      distractors: wrong,
+      explanation: topic.introduction,
+    },
+    {
+      prompt: `Which example is used to illustrate ${topic.title.toLowerCase()}?`,
+      answer: topic.example,
+      distractors: wrong,
+      explanation: `The lesson uses this example: ${topic.example}`,
+    },
+    {
+      prompt: `Which statement is a misconception about ${topic.title.toLowerCase()}?`,
+      answer: wrong[0],
+      distractors: misconceptionOptions,
+      explanation: `This is the misconception. Instead, remember: ${ideas[0]}`,
+    },
+    {
+      prompt: `When applying ${topic.title.toLowerCase()}, which principle is useful to keep in mind?`,
+      answer: ideas[0],
+      distractors: accurateDistractors,
+      explanation: ideas[0],
+    },
+    {
+      prompt: `Which statement gives another correct takeaway from ${topic.title.toLowerCase()}?`,
+      answer: ideas[1],
+      distractors: accurateDistractors,
+      explanation: ideas[1],
+    },
+    {
+      prompt: `Which summary is supported by this lesson on ${topic.title.toLowerCase()}?`,
+      answer: topic.introduction,
+      distractors: wrong,
+      explanation: topic.introduction,
+    },
+    {
+      prompt: `Which detail is worth remembering as you revise ${topic.title.toLowerCase()}?`,
+      answer: ideas[2],
+      distractors: accurateDistractors,
+      explanation: ideas[2],
+    },
+  ];
+  return items.map((item, index) =>
+    makeQuestion(item.prompt, item.answer, item.distractors, item.explanation, index, topic.id),
+  );
+}
+
 function makeLessons(topics: TopicSeed[]): Lesson[] {
   return topics.map((topic) => ({
     id: topic.id,
     title: topic.title,
-    duration: "6 min",
+    duration: "8–10 min",
     introduction: topic.introduction,
     keyIdeas: topic.keyIdeas,
     example: topic.example,
-    question: {
-      prompt: topic.check,
-      options: [topic.keyIdeas[0], ...topic.wrong.slice(0, 3)],
-      correctAnswer: 0,
-      explanation: topic.keyIdeas[0],
-    },
+    studySections: [
+      {
+        heading: "Start with the big picture",
+        body: topic.introduction,
+      },
+      ...topic.keyIdeas.map((idea, index) => ({
+        heading: `Step ${index + 1}: unpack the idea`,
+        body: `${idea} In your own words, explain what this means and identify what evidence, condition, or example would help you recognise it in a new question. Connect this point to the example below instead of memorising the sentence in isolation.`,
+      })),
+      {
+        heading: "Connect the idea to an example",
+        body: `Read the example carefully: ${topic.example} Ask yourself which part of the example demonstrates the key ideas, and why the result or description makes sense.`,
+      },
+      {
+        heading: "Check your understanding",
+        body: `Before the quiz, try to explain ${topic.title.toLowerCase()} without looking at the notes. Then check whether your explanation includes the key ideas and can be supported by the example.`,
+      },
+    ],
+    questions: makeQuestionBank(topic),
   }));
 }
 
