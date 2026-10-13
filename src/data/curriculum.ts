@@ -1,4 +1,4 @@
-import type { Lesson, Subject } from "../types/learning";
+import type { Lesson, QuizQuestion, Subject } from "../types/learning";
 
 type TopicSeed = {
   id: string;
