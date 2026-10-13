@@ -71,8 +71,8 @@ function App() {
   }
 
   return (
-    <div className="app">
-      <header className="header">
+    <div className={`app ${activePage !== "home" ? "app-private-mode" : ""}`}>
+      {activePage === "home" && <header className="header">
         <a className="brand" href="#" aria-label="LearnWorld home">
           <span className="brand-icon">✳</span>
           <span>Learn<span className="brand-light">World</span></span>
@@ -87,7 +87,7 @@ function App() {
         <a className="header-cta" href="#subjects">
           Start learning <span aria-hidden="true">↗</span>
         </a>
-      </header>
+      </header>}
 
       <main>
         {activePage === "secret" ? (
@@ -345,7 +345,7 @@ function App() {
         )}
       </main>
 
-      <footer className="footer">
+      {activePage === "home" && <footer className="footer">
         <a className="footer-brand" href="#">
           <span className="brand-icon">✳</span>
           LearnWorld
@@ -365,7 +365,7 @@ function App() {
             Back to top ↑
           </a>
         </div>
-      </footer>
+      </footer>}
     </div>
   );
 }
